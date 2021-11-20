@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .input-icon {
+    @apply h-8 w-8 absolute top-3.5 left-2;
+  }
+
+  .action-btn {
+    @apply bg-primary px-8 py-4 text-lg rounded hover:bg-opacity-50;
+  }
+
+  .link {
+    @apply text-primary font-semibold cursor-pointer hover:underline;
+  }
+}
