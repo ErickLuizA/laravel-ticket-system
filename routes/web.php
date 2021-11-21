@@ -27,6 +27,7 @@
   });
 
   Route ::middleware(['auth']) -> group(function() {
-    Route ::get('/dashboard', [UserController::class, 'index']) -> middleware('auth');
+    Route ::get('/dashboard', [UserController::class, 'index']);
+    Route::post('/logout', [UserController::class, 'logout']) -> name('logout');
   });
 

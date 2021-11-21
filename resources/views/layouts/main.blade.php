@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Keelp</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="icon" href="{{ asset('assets/icons/logo.svg') }}" sizes="any" type="image/svg+xml">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -22,6 +23,8 @@
   </style>
 </head>
 <body class="bg-secondary text-onSecondary h-full w-full">
+@yield('header')
 @yield('content')
+@yield('footer')
 </body>
 </html>

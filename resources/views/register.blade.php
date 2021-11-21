@@ -1,4 +1,4 @@
-@extends('main')
+@extends('layouts.main')
 
 @section('content')
   <main class="flex items-center justify-center p-4 flex-col w-full h-5/6 max-w-5xl mx-auto">

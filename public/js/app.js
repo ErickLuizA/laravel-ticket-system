@@ -2062,6 +2062,19 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var userAvatarButton = document.querySelector('#user_avatar_button');
+var userAvatarPopup = document.querySelector('#user_avatar_popup');
+var navbarUl = document.querySelector('#navbar_ul');
+userAvatarButton === null || userAvatarButton === void 0 ? void 0 : userAvatarButton.addEventListener('click', function (event) {
+  userAvatarPopup === null || userAvatarPopup === void 0 ? void 0 : userAvatarPopup.classList.toggle('hidden');
+});
+navbarUl.addEventListener('click', function (event) {
+  event.stopPropagation();
+});
+document.addEventListener('click', function (event) {
+  userAvatarPopup === null || userAvatarPopup === void 0 ? void 0 : userAvatarPopup.classList.add('hidden');
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
