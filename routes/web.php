@@ -18,8 +18,15 @@
   */
 
   Route ::get('/', [HomeController::class, 'index']);
-  Route ::get('/login', [LoginController::class, 'index']);
-  Route ::post('/login', [LoginController::class, 'authenticate']) -> name('login.authenticate');
-  Route ::get('/register', [RegisterController::class, 'index']);
-  Route ::post('/register', [RegisterController::class, 'store']) -> name('register.store');
-  Route ::get('/dashboard', [UserController::class, 'index']);
+
+  Route ::middleware(['guest']) -> group(function() {
+    Route ::get('/login', [LoginController::class, 'index']) -> name('login');
+    Route ::post('/login', [LoginController::class, 'authenticate']) -> name('login.authenticate');
+    Route ::get('/register', [RegisterController::class, 'index']) -> name('register');
+    Route ::post('/register', [RegisterController::class, 'store']) -> name('register.store');
+  });
+
+  Route ::middleware(['auth']) -> group(function() {
+    Route ::get('/dashboard', [UserController::class, 'index']) -> middleware('auth');
+  });
+
