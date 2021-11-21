@@ -11,16 +11,22 @@
     public string $type;
     public string $placeholder;
     public string $error;
-    public string $icon;
+    public string $value;
     public bool $required;
 
-    public function __construct(string $name, string $placeholder = "", string $error = "", string $type = "text", bool $required = false) {
+    public function __construct(
+      string $name,
+      string $placeholder = "",
+      string $error = "",
+      string $type = "text",
+      string $value = "",
+      bool   $required = false) {
       $this -> name = $name;
       $this -> placeholder = $placeholder;
       $this -> error = $error;
       $this -> type = $type;
       $this -> required = $required;
-      $this -> icon = "mail";
+      $this -> value = $value;
     }
 
     public function render(): View {
