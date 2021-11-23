@@ -6,10 +6,6 @@
   use Illuminate\Support\Facades\Auth;
 
   class UserController extends Controller {
-    public function index() {
-      return view('dashboard');
-    }
-
     public function logout(Request $request) {
       Auth ::logout();
 

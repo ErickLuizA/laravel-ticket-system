@@ -10,6 +10,7 @@
       </div>
     </div>
 
+
     <table class="w-full mt-8">
       <thead class="bg-secondaryVariant">
       <tr>
@@ -20,20 +21,31 @@
       </tr>
       </thead>
       <tbody class="bg-surface text-onSurface">
-      <tr class="text-center cursor-pointer hover:bg-secondary">
-        <td class="py-4">
-          <a class="block" href="/login">#01</a>
-        </td>
-        <td tabindex="-1" class="py-4">
-          <a class="block" href="/login">#01</a>
-        </td>
-        <td tabindex="-1" class="py-4">
-          <a class="block" href="/login">#01</a>
-        </td>
-        <td tabindex="-1" class="py-4">
-          <a class="block" href="/login">#01</a>
-        </td>
-      </tr>
+
+      @foreach($tickets as $ticket)
+        <tr class="text-center cursor-pointer hover:bg-secondary">
+          <td class="py-4">
+            <a href="{{ route('ticket', ['id' => $ticket -> id]) }}" class="block">
+              #{{$ticket -> id}}
+            </a>
+          </td>
+          <td tabindex="-1" class="py-4">
+            <a href="{{ route('ticket', ['id' => $ticket -> id]) }}" class="block">
+              {{$ticket -> subject}}
+            </a>
+          </td>
+          <td tabindex="-1" class="py-4">
+            <a href="{{ route('ticket', $ticket -> id) }}" class="block">
+              {{$ticket -> status}}
+            </a>
+          </td>
+          <td tabindex="-1" class="py-4">
+            <a href="{{ route('ticket', ['id' => $ticket -> id]) }}" class="block">
+              {{$ticket -> updated_at -> format('d/m/y')}}
+            </a>
+          </td>
+        </tr>
+      @endforeach
       </tbody>
     </table>
   </div>
