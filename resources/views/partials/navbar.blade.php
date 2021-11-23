@@ -1,6 +1,8 @@
 <nav class="w-full bg-secondaryVariant p-4">
   <div class="w-full max-w-5xl mx-auto flex justify-between items-center relative">
-    <img src="{{ asset('assets/icons/logo.svg') }}" alt="app logo"/>
+    <a href="/">
+      <img src="{{ asset('assets/icons/logo.svg') }}" alt="app logo"/>
+    </a>
 
     <ul id="navbar_ul" class="flex items-center">
       <li class="hidden sm:block sm:mr-4">
@@ -13,7 +15,7 @@
           </button>
         </li>
         <div id="user_avatar_popup"
-             class="absolute top-12 right-0 px-4 py-2 rounded-lg hidden transition-opacity  bg-surface text-onSurface">
+             class="absolute top-12 right-0 px-4 py-2 rounded-lg hidden transition-opacity bg-surface text-onSurface z-10">
           <ul>
             <li class="my-2 cursor-pointer hover:text-primary sm:hidden"><a href="/open-ticket">Open a ticket</a></li>
             <li class="my-2 cursor-pointer hover:text-primary"><a href="/dashboard">Tickets</a></li>

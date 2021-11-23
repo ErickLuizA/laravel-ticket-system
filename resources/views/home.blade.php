@@ -1,5 +1,5 @@
 @extends('layouts.withNavbar')
 
-@section('content')
-  <h1>Hello</h1>
+@section('main')
+  <h1>Welcome!!</h1>
 @endsection

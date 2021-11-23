@@ -1,15 +1,12 @@
-<div class="w-full my-4 relative">
+<div class="w-full my-4 relative flex flex-col">
   <label
-    class="sr-only"
-    for="{{ $name }}">{{$name}}</label>
+    class="{{ $label ? 'text-2xl mb-2' : 'sr-only'}}"
+    for="{{ $name }}">{{ $label ?: $name}}</label>
   {{ $slot }}
   <input
+    {{ $attributes }}
     id="{{ $name }}"
     name="{{$name}}"
-    class="bg-surface pr-4 pl-12 py-4 border-2 border-surface rounded-md w-full  {{ $error ? 'border-danger focus:outline-none focus:ring-danger' : '' }}"
-    type="{{ $type }}"
-    placeholder="{{ $placeholder }}"
-    value="{{$value}}"
-    {{ $required ? 'required' : '' }}>
+    class="input-field {{ !$label ? 'pl-12' : '' }}  {{ $error ? 'error' : '' }}">
   <p class="text-left mt-1 text-danger">{{ $error }}</p>
 </div>

@@ -7,6 +7,14 @@
     @apply h-8 w-8 absolute top-3.5 left-2;
   }
 
+  .input-field {
+    @apply bg-surface p-4 border-2 border-surface rounded-md w-full;
+  }
+
+  .input-field.error {
+    @apply border-danger focus:outline-none focus:ring-danger;
+  }
+
   .action-btn {
     @apply bg-primary px-8 py-4 text-lg rounded hover:bg-opacity-50;
   }
