@@ -7,12 +7,14 @@
   use Illuminate\Support\Facades\Auth;
 
   class TicketController extends Controller {
-    public function index() {
+    public function index(Request $request) {
       $userId = Auth ::id();
 
-      $tickets = Ticket ::where('user_id', '=', $userId) -> get();
+      $search = $request -> query('search');
 
-      return view('dashboard', ['tickets' => $tickets]);
+      $tickets = Ticket ::where('user_id', '=', $userId) -> where('subject', 'like', "%$search%") -> get();
+
+      return view('dashboard', ['tickets' => $tickets, 'oldSearch' => $search]);
     }
 
     public function create() {

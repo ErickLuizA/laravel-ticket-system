@@ -4,10 +4,15 @@
   <div>
     <div class="flex justify-between items-center">
       <h1 class="text-4xl">My Tickets</h1>
-      <div class="relative">
+      <form action="{{ route('dashboard') }}" method="GET" class="relative">
         <x-heroicon-o-search class="input-icon h-6 w-6"/>
-        <input class="p-4 pl-10 rounded-lg bg-surface text-onSurface" type="search" placeholder="Search for a ticket"/>
-      </div>
+        <input
+          class="p-4 pl-10 rounded-lg bg-surface text-onSurface"
+          name="search"
+          type="search"
+          placeholder="Search for a ticket"
+          value="{{$oldSearch}}"/>
+      </form>
     </div>
 
 
