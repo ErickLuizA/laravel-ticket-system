@@ -17,6 +17,17 @@
       return view('dashboard', ['tickets' => $tickets, 'oldSearch' => $search]);
     }
 
+    public function show($id) {
+      $userId = Auth ::id();
+
+      $data = Ticket ::with('user:users.id,name,avatar', 'replies', 'replies.user:users.id,name,avatar,created_at')
+        -> where('user_id', '=', $userId)
+        -> where('id', '=', $id)
+        -> get();
+
+      return view('ticket-details', ['data' => $data[0] ?? false]);
+    }
+
     public function create() {
       return view('open-ticket');
     }

@@ -4,18 +4,18 @@
   use Illuminate\Database\Schema\Blueprint;
   use Illuminate\Support\Facades\Schema;
 
-  class CreateTicketResponsesTable extends Migration {
+  class CreateTicketReplyAttachmentsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-      Schema ::create('ticket_responses', function(Blueprint $table) {
+      Schema ::create('ticket_reply_attachments', function(Blueprint $table) {
         $table -> id();
-        $table -> text('response');
-        $table -> foreignId('user_id') -> constrained('users');
-        $table -> foreignId('ticket_id') -> constrained('tickets');
+        $table -> string('file', 255);
+        $table -> string('file_name', 255);
+        $table -> foreignId('ticket_reply_id') -> constrained('ticket_replies') -> onDelete('cascade');
         $table -> timestamps();
       });
     }
@@ -26,6 +26,6 @@
      * @return void
      */
     public function down() {
-      Schema ::dropIfExists('ticket_responses');
+      Schema ::dropIfExists('ticket_reply_attachments');
     }
   }
