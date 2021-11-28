@@ -17,23 +17,36 @@
 
     <p>{{ $data -> description }}</p>
 
-    <h2 class="text-2xl font-bold my-8">Replies({{ sizeof($data -> replies)  }})</h2>
+    <div class="mt-8 mb-2">
+      <button class="action-btn py-2">Reply</button>
 
-    @foreach($data -> replies as $reply)
-      <div class="bg-surface text-onSurface p-4 rounded-md">
-        <div class="flex items-center justify-between mt-4 mb-12">
-          <div class="flex items-center">
-            <img class="rounded-full h-16 w-16 mr-4" src="{{$reply -> user -> avatar }}"
-                 alt="{{ $reply -> user -> name }}"/>
-            <p class="text-lg">{{ $reply -> user -> name }}</p>
+      <button class="text-primary hover:underline mx-8">I have the same question ()</button>
+    </div>
+
+    <button id="replies_button" class="flex items-center">
+      <p class="text-2xl font-bold my-8">Replies({{ sizeof($data -> replies)  }})</p>
+
+      <x-heroicon-o-chevron-down id="down_icon" class="h-8 w-8 ml-4"/>
+      <x-heroicon-o-chevron-up id="up_icon" class="h-8 w-8 ml-4 hidden"/>
+    </button>
+
+    <div id="reply_list_container">
+      @foreach($data -> replies as $reply)
+        <div class="bg-surface text-onSurface p-4 rounded-md my-4 hover:bg-opacity-50">
+          <div class="flex items-center justify-between mt-4 mb-12">
+            <div class="flex items-center">
+              <img class="rounded-full h-16 w-16 mr-4" src="{{$reply -> user -> avatar }}"
+                   alt="{{ $reply -> user -> name }}"/>
+              <p class="text-lg">{{ $reply -> user -> name }}</p>
+            </div>
+
+            <p class="text-primary">Replied on {{ $reply -> created_at -> toFormattedDateString() }} </p>
           </div>
 
-          <p class="text-primary">Replied on {{ $reply -> created_at -> toFormattedDateString() }} </p>
+          <p class="text-xl">{{ $reply -> reply }}</p>
         </div>
 
-        <p class="text-xl">{{ $reply -> reply }}</p>
-      </div>
-
-    @endforeach
+      @endforeach
+    </div>
   @endif
 @endsection
