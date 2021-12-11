@@ -15,8 +15,8 @@
         $table -> id();
         $table -> string('subject', 255);
         $table -> text('description');
-        $table -> foreignId('user_id') -> constrained('users');
         $table -> enum('status', ['OPEN', 'CLOSED']) ->default('OPEN');
+        $table -> foreignId('user_id') -> constrained('users');
         $table -> timestamps();
       });
     }

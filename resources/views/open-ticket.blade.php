@@ -28,7 +28,7 @@
         rows="10"
         required
         value="{{old('description')}}"
-        class="input-field  {{ $errors -> has('description') ? 'error' : '' }}"></textarea>
+        class="input-field resize-none  {{ $errors -> has('description') ? 'error' : '' }}"></textarea>
       <p class="text-left mt-1 text-danger">{{ $errors -> first('description') }}</p>
     </div>
 

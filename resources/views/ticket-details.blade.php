@@ -18,10 +18,29 @@
     <p>{{ $data -> description }}</p>
 
     <div class="mt-8 mb-2">
-      <button class="action-btn py-2">Reply</button>
+      <button id="reply_action_button" class="action-btn py-2">Reply</button>
 
       <button class="text-primary hover:underline mx-8">I have the same question ()</button>
     </div>
+
+    <form id="reply_form" class="my-8 hidden" method="POST" action="{{ route('reply.store', ['id' => $data -> id]) }}">
+      @csrf
+
+      <textarea
+        id="reply"
+        name="reply"
+        placeholder="Insert your reply"
+        rows="10"
+        required
+        value="{{old('reply')}}"
+        class="input-field resize-none  {{ $errors -> has('reply') ? 'error' : '' }}"></textarea>
+
+      <div class="flex mt-4">
+        <button id="reply_cancel_action_button" type="button" class="action-btn text-lg py-2 bg-secondary hover:bg-surface mr-4">Cancel</button>
+
+        <button type="submit" class="action-btn text-lg py-2">Submit</button>
+      </div>
+    </form>
 
     <button id="replies_button" class="flex items-center">
       <p class="text-2xl font-bold my-8">Replies({{ sizeof($data -> replies)  }})</p>
@@ -49,4 +68,8 @@
       @endforeach
     </div>
   @endif
+@endsection
+
+@section('script')
+  <script src="{{ asset('js/details.js') }}"></script>
 @endsection
