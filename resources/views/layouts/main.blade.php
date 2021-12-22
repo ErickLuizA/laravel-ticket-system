@@ -26,5 +26,9 @@
 @yield('header')
 @yield('content')
 @yield('footer')
+
+<script>
+  const APP_URL = {!! json_encode(url('/')) !!}
+</script>
 </body>
 </html>

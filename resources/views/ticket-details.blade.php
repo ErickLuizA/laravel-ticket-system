@@ -21,7 +21,13 @@
     <div class="mt-8 mb-2">
       <button id="reply_action_button" class="action-btn py-2">Reply</button>
 
-      <button class="text-primary hover:underline mx-8">I have the same question ()</button>
+      <button
+        id="have_same_question_button"
+        data-ticketid="{{ $data -> id }}"
+        data-count="{{$count}}"
+        class="text-primary hover:underline mx-8">
+        I have the same question ({{ $count }})
+      </button>
     </div>
 
     <form id="reply_form" class="my-8 {{  $errors -> has('reply') ? '' : 'hidden' }}" method="POST"
@@ -42,10 +48,12 @@
 
       @enderror
 
-
       <div class="flex mt-4">
-        <button id="reply_cancel_action_button" type="button"
-                class="action-btn text-lg py-2 bg-secondary hover:bg-surface mr-4">Cancel
+        <button
+          id="reply_cancel_action_button"
+          type="button"
+          class="action-btn text-lg py-2 bg-secondary hover:bg-surface mr-4">
+          Cancel
         </button>
 
         <button type="submit" class="action-btn text-lg py-2">Submit</button>

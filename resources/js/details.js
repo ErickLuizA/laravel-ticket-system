@@ -13,6 +13,8 @@ const replyToReplyCancelActionButtons = document.querySelectorAll('#reply_to_rep
 
 const replyToButton = document.querySelectorAll('#reply_to_button')
 
+const haveSameQuestionButton = document.querySelector('#have_same_question_button')
+
 repliesButton.addEventListener('click', () => {
   if (downIcon.classList.contains('hidden')) {
     downIcon.classList.remove('hidden')
@@ -61,7 +63,21 @@ replyToReplyCancelActionButtons.forEach((button, index) => {
 replyToButton.forEach((button) => {
   button.addEventListener('click', () => {
     const showReplyId = document.querySelector(`#reply-${button.dataset.ticketReplyId}`)
-    
+
     showReplyId.classList.toggle('hidden')
   })
+})
+
+
+haveSameQuestionButton.addEventListener('click', async () => {
+  const ticketId = haveSameQuestionButton.dataset.ticketid
+  const count = haveSameQuestionButton.dataset.count
+
+  try {
+    const {data} = await axios.post(`${APP_URL}/ticket/${ticketId}/same-question`)
+
+    haveSameQuestionButton.textContent = haveSameQuestionButton.textContent.replace(count, data)
+  } catch (error) {
+    console.log(error)
+  }
 })
