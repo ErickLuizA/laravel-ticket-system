@@ -35,6 +35,8 @@
     Route ::post('/ticket/{id}/same-question', [TicketController::class, 'handleHaveSameQuestion']);
     Route ::get('/open-ticket', [TicketController::class, 'create']);
     Route ::post('/open-ticket', [TicketController::class, 'store']) -> name('ticket.store');
+    Route ::get('/profile', [UserController::class, 'show']);
+    Route ::put('/profile', [UserController::class, 'update']) -> name('profile.update');
     Route ::post('/logout', [UserController::class, 'logout']) -> name('logout');
   });
 
