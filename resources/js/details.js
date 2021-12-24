@@ -31,7 +31,7 @@ repliesButton.addEventListener('click', () => {
   }
 })
 
-replyActionButton.addEventListener('click', () => {
+replyActionButton?.addEventListener('click', () => {
   if (replyForm.classList.contains('hidden')) {
     window.scroll({top: replyActionButton.offsetTop, behavior: 'smooth'})
   }
@@ -39,12 +39,12 @@ replyActionButton.addEventListener('click', () => {
   replyForm.classList.toggle('hidden')
 })
 
-replyCancelActionButton.addEventListener('click', () => {
+replyCancelActionButton?.addEventListener('click', () => {
   replyForm.classList.add('hidden')
 })
 
-replyToReplyActionButtons.forEach((button, index) => {
-  button.addEventListener('click', (event) => {
+replyToReplyActionButtons?.forEach((button, index) => {
+  button?.addEventListener('click', (event) => {
     const form = [...replyToReplyForms].find(form => form.dataset.id == index)
 
     form.classList.toggle('hidden')
@@ -54,16 +54,16 @@ replyToReplyActionButtons.forEach((button, index) => {
   })
 })
 
-replyToReplyCancelActionButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
+replyToReplyCancelActionButtons?.forEach((button, index) => {
+  button?.addEventListener('click', () => {
     const form = [...replyToReplyForms].find(form => form.dataset.id == index)
 
     form.classList.add('hidden')
   })
 })
 
-replyToButton.forEach((button) => {
-  button.addEventListener('click', () => {
+replyToButton?.forEach((button) => {
+  button?.addEventListener('click', () => {
     const showReplyId = document.querySelector(`#reply-${button.dataset.ticketReplyId}`)
 
     showReplyId.classList.toggle('hidden')
@@ -83,7 +83,6 @@ haveSameQuestionButton.addEventListener('click', async () => {
     console.log(error)
   }
 })
-
 
 statusSelect.addEventListener('change', (event) => {
   event.target.form.submit()

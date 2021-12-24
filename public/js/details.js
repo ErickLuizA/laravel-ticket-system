@@ -896,7 +896,7 @@ repliesButton.addEventListener('click', function () {
     replyListContainer.classList.add('hidden');
   }
 });
-replyActionButton.addEventListener('click', function () {
+replyActionButton === null || replyActionButton === void 0 ? void 0 : replyActionButton.addEventListener('click', function () {
   if (replyForm.classList.contains('hidden')) {
     window.scroll({
       top: replyActionButton.offsetTop,
@@ -906,11 +906,11 @@ replyActionButton.addEventListener('click', function () {
 
   replyForm.classList.toggle('hidden');
 });
-replyCancelActionButton.addEventListener('click', function () {
+replyCancelActionButton === null || replyCancelActionButton === void 0 ? void 0 : replyCancelActionButton.addEventListener('click', function () {
   replyForm.classList.add('hidden');
 });
-replyToReplyActionButtons.forEach(function (button, index) {
-  button.addEventListener('click', function (event) {
+replyToReplyActionButtons === null || replyToReplyActionButtons === void 0 ? void 0 : replyToReplyActionButtons.forEach(function (button, index) {
+  button === null || button === void 0 ? void 0 : button.addEventListener('click', function (event) {
     var form = _toConsumableArray(replyToReplyForms).find(function (form) {
       return form.dataset.id == index;
     });
@@ -922,8 +922,8 @@ replyToReplyActionButtons.forEach(function (button, index) {
     });
   });
 });
-replyToReplyCancelActionButtons.forEach(function (button, index) {
-  button.addEventListener('click', function () {
+replyToReplyCancelActionButtons === null || replyToReplyCancelActionButtons === void 0 ? void 0 : replyToReplyCancelActionButtons.forEach(function (button, index) {
+  button === null || button === void 0 ? void 0 : button.addEventListener('click', function () {
     var form = _toConsumableArray(replyToReplyForms).find(function (form) {
       return form.dataset.id == index;
     });
@@ -931,8 +931,8 @@ replyToReplyCancelActionButtons.forEach(function (button, index) {
     form.classList.add('hidden');
   });
 });
-replyToButton.forEach(function (button) {
-  button.addEventListener('click', function () {
+replyToButton === null || replyToButton === void 0 ? void 0 : replyToButton.forEach(function (button) {
+  button === null || button === void 0 ? void 0 : button.addEventListener('click', function () {
     var showReplyId = document.querySelector("#reply-".concat(button.dataset.ticketReplyId));
     showReplyId.classList.toggle('hidden');
   });

@@ -20,13 +20,15 @@
 
     <div class="mt-8 mb-2 flex justify-between">
       <div>
-        <button id="reply_action_button" class="action-btn py-2">Reply</button>
+        @if($data->status === 'OPEN')
+          <button id="reply_action_button" class="action-btn py-2 mr-8">Reply</button>
+        @endif
 
         <button
           id="have_same_question_button"
           data-ticketid="{{ $data -> id }}"
           data-count="{{$count}}"
-          class="text-primary hover:underline mx-8">
+          class="text-primary hover:underline">
           I have the same question ({{ $count }})
         </button>
       </div>
@@ -112,43 +114,45 @@
 
           <p class="text-xl">{{ $reply -> reply }}</p>
 
-          <button id="reply_to_reply_action_button" class="action-btn py-2 mt-10">Reply
-          </button>
+          @if($data->status === 'OPEN')
+            <button id="reply_to_reply_action_button" class="action-btn py-2 mt-10">Reply
+            </button>
 
-          <form id="reply_to_reply_form" data-id="{{$key}}"
-                class="my-8 {{  $errors -> has('reply') ? '' : 'hidden' }}"
-                method="POST"
-                action="{{ route('reply.store', ['id' => $data -> id]) }}">
-            @csrf
+            <form id="reply_to_reply_form" data-id="{{$key}}"
+                  class="my-8 {{  $errors -> has('reply') ? '' : 'hidden' }}"
+                  method="POST"
+                  action="{{ route('reply.store', ['id' => $data -> id]) }}">
+              @csrf
 
-            <textarea
-              name="reply"
-              placeholder="Insert your reply"
-              rows="10"
-              required
-              value="{{old('reply')}}"
-              class="input-field border-2 border-secondaryVariant resize-none {{ $errors -> has('reply') ? 'error' : '' }}"></textarea>
+              <textarea
+                name="reply"
+                placeholder="Insert your reply"
+                rows="10"
+                required
+                value="{{old('reply')}}"
+                class="input-field border-2 border-secondaryVariant resize-none {{ $errors -> has('reply') ? 'error' : '' }}"></textarea>
 
-            <input type="hidden" name="ticketReplyId" value="{{ $reply -> id }}">
+              <input type="hidden" name="ticketReplyId" value="{{ $reply -> id }}">
 
-            @error('reply')
+              @error('reply')
 
-            <span class="text-danger">{{ $message }}</span>
+              <span class="text-danger">{{ $message }}</span>
 
-            @enderror
+              @enderror
 
 
-            <div class="flex mt-4">
-              <button
-                id="reply_to_reply_cancel_action_button"
-                type="button"
-                class="action-btn text-lg py-2 bg-secondary hover:bg-surface mr-4">
-                Cancel
-              </button>
+              <div class="flex mt-4">
+                <button
+                  id="reply_to_reply_cancel_action_button"
+                  type="button"
+                  class="action-btn text-lg py-2 bg-secondary hover:bg-surface mr-4">
+                  Cancel
+                </button>
 
-              <button type="submit" class="action-btn text-lg py-2">Submit</button>
-            </div>
-          </form>
+                <button type="submit" class="action-btn text-lg py-2">Submit</button>
+              </div>
+            </form>
+          @endif
 
         </div>
 
