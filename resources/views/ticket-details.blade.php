@@ -75,8 +75,8 @@
             <button id="reply_to_button" data-ticket-reply-id="{{ $reply -> ticketReply -> id }}"
                     class="bg-secondary bg-opacity-50 p-3 rounded-md underline w-full flex items-center">
               <x-heroicon-o-arrow-right class="h-6 w-6 mr-2"/>
-              <span>In reply to {{ $reply -> ticketReply -> user -> name }} on </span>
-              <span>{{ $reply -> ticketReply -> user -> created_at -> toFormattedDateString() }}</span>
+              <span>In reply to {{ $reply -> ticketReply -> user -> name }} on&nbsp;</span>
+              <span>{{ $reply -> ticketReply -> created_at -> toFormattedDateString() }}</span>
             </button>
 
             <div id="reply-{{$reply -> ticketReply -> id}}"
