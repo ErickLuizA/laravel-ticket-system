@@ -15,6 +15,8 @@ const replyToButton = document.querySelectorAll('#reply_to_button')
 
 const haveSameQuestionButton = document.querySelector('#have_same_question_button')
 
+const statusSelect = document.querySelector('#status_select')
+
 repliesButton.addEventListener('click', () => {
   if (downIcon.classList.contains('hidden')) {
     downIcon.classList.remove('hidden')
@@ -80,4 +82,9 @@ haveSameQuestionButton.addEventListener('click', async () => {
   } catch (error) {
     console.log(error)
   }
+})
+
+
+statusSelect.addEventListener('change', (event) => {
+  event.target.form.submit()
 })

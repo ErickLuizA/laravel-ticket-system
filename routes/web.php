@@ -31,6 +31,7 @@
   Route ::middleware(['auth']) -> group(function () {
     Route ::get('/dashboard', [TicketController::class, 'index']) -> name('dashboard');
     Route ::get('/ticket/{id}', [TicketController::class, 'show']) -> name('ticket');
+    Route ::put('/ticket/{id}', [TicketController::class, 'update']) -> name('ticket.update');
     Route ::post('/ticket/{id}/reply', [TicketReplyController::class, 'store']) -> name('reply.store');
     Route ::post('/ticket/{id}/same-question', [TicketController::class, 'handleHaveSameQuestion']);
     Route ::get('/open-ticket', [TicketController::class, 'create']);

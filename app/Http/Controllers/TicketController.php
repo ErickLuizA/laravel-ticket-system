@@ -4,33 +4,38 @@
 
   use App\Models\Ticket;
   use Illuminate\Http\Request;
+  use Illuminate\Support\Carbon;
   use Illuminate\Support\Facades\Auth;
   use Illuminate\Support\Facades\DB;
 
   class TicketController extends Controller {
     public function index(Request $request) {
-      $userId = Auth ::id();
+      $user = Auth ::user();
 
       $search = $request -> query('search');
 
-      $tickets = Ticket ::where('user_id', '=', $userId) -> where('subject', 'like', "%$search%") -> get();
+      if ($user -> role !== 'GUEST') {
+        $tickets = Ticket ::where('subject', 'like', "%$search%") -> get();
+      } else {
+        $tickets = Ticket ::where('user_id', '=', $user -> id) -> where('subject', 'like', "%$search%") -> get();
+      }
 
       return view('dashboard', ['tickets' => $tickets, 'oldSearch' => $search]);
     }
 
     public function show($id) {
-      $userId = Auth ::id();
+      $user = Auth ::user();
 
       $data = Ticket ::with('user:id,name,avatar',
         'replies.user:id,name,avatar,created_at',
         'replies.ticketReply.user:id,name,created_at')
-        -> where('user_id', '=', $userId)
+        -> where('user_id', '=', $user -> id)
         -> where('id', '=', $id)
         -> get();
 
       $count = DB ::table('ticket_same_question') -> where('ticket_id', $id) -> count();
 
-      return view('ticket-details', ['data' => $data[0] ?? false, 'count' => $count ?? 0]);
+      return view('ticket-details', ['data' => $data[0] ?? false, 'count' => $count ?? 0, 'user' => $user]);
     }
 
     public function create() {
@@ -54,6 +59,16 @@
       return redirect('dashboard');
     }
 
+    public function update(Request $request, $id) {
+      $user = Auth ::user();
+
+      if ($user -> role !== 'GUEST') {
+        Ticket ::whereId($id) -> update(['status' => $request -> status]);
+      }
+
+      return redirect() -> back();
+    }
+
     public function handleHaveSameQuestion($id) {
       $userId = Auth ::id();
 
@@ -65,7 +80,9 @@
       if ($result -> isEmpty()) {
         DB ::table('ticket_same_question') -> insert([
           'user_id' => $userId,
-          'ticket_id' => $id
+          'ticket_id' => $id,
+          'created_at' => Carbon ::now(),
+          'updated_at' => Carbon ::now()
         ]);
       }
 

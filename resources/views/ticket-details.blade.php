@@ -2,7 +2,7 @@
 
 @section('main')
   @if(!$data)
-    <h1>This ticket does not exist.</h1>
+    <h1 class="text-2xl">This ticket does not exist.</h1>
   @else
     <div class="flex items-center justify-between my-4">
       <div class="flex items-center">
@@ -18,16 +18,31 @@
 
     <p>{{ $data -> description }}</p>
 
-    <div class="mt-8 mb-2">
-      <button id="reply_action_button" class="action-btn py-2">Reply</button>
+    <div class="mt-8 mb-2 flex justify-between">
+      <div>
+        <button id="reply_action_button" class="action-btn py-2">Reply</button>
 
-      <button
-        id="have_same_question_button"
-        data-ticketid="{{ $data -> id }}"
-        data-count="{{$count}}"
-        class="text-primary hover:underline mx-8">
-        I have the same question ({{ $count }})
-      </button>
+        <button
+          id="have_same_question_button"
+          data-ticketid="{{ $data -> id }}"
+          data-count="{{$count}}"
+          class="text-primary hover:underline mx-8">
+          I have the same question ({{ $count }})
+        </button>
+      </div>
+
+      @if($user !== 'GUEST')
+        <form method="POST" action="{{route('ticket.update', ['id' => $data -> id])}}">
+          @csrf
+          @method('PUT')
+
+          <select id="status_select" name="status" class="bg-secondary border-2 rounded-md p-2">
+            <option {{ $data -> status === 'OPEN' ? 'selected' : null }}>OPEN</option>
+            <option {{ $data -> status === 'CLOSED' ? 'selected' : null }}>CLOSED</option>
+          </select>
+        </form>
+      @endif
+
     </div>
 
     <form id="reply_form" class="my-8 {{  $errors -> has('reply') ? '' : 'hidden' }}" method="POST"

@@ -884,6 +884,7 @@ var replyToReplyForms = document.querySelectorAll('#reply_to_reply_form');
 var replyToReplyCancelActionButtons = document.querySelectorAll('#reply_to_reply_cancel_action_button');
 var replyToButton = document.querySelectorAll('#reply_to_button');
 var haveSameQuestionButton = document.querySelector('#have_same_question_button');
+var statusSelect = document.querySelector('#status_select');
 repliesButton.addEventListener('click', function () {
   if (downIcon.classList.contains('hidden')) {
     downIcon.classList.remove('hidden');
@@ -968,6 +969,9 @@ haveSameQuestionButton.addEventListener('click', /*#__PURE__*/_asyncToGenerator(
     }
   }, _callee, null, [[2, 10]]);
 })));
+statusSelect.addEventListener('change', function (event) {
+  event.target.form.submit();
+});
 })();
 
 /******/ })()
